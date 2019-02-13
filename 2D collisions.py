@@ -6,7 +6,7 @@ import random
 class Collisions:
 
     neg_list = [1, -1]
-    rand_list = range(3, 6)
+    rand_list = range(5, 8)
 
     def __init__(self):
 
@@ -15,6 +15,10 @@ class Collisions:
         self.v1y = Collisions.neg_list[random.randint(0, 1)]*Collisions.rand_list[random.randint(0, 2)]*random.random()
         self.v2x = Collisions.neg_list[random.randint(0, 1)]*Collisions.rand_list[random.randint(0, 2)]*random.random()
         self.v2y = Collisions.neg_list[random.randint(0, 1)]*Collisions.rand_list[random.randint(0, 2)]*random.random()
+        # self.v1x = 3
+        # self.v1y = 3
+        # self.v2x = -3
+        # self.v2y = -3
         self.m1 = 0
         self.m2 = 0
 
@@ -44,14 +48,16 @@ class Collisions:
 
         h1 = random.randint(self.m1*2, self.size - self.m1*2)
         h2 = random.randint(self.m2*2, self.size - self.m2*2)
+        # h1 = self.m1+51
+        # h2 = self.size-self.m2-51
 
         distancex = self.size - 100 - self.m1*2 - self.m2*2
         distancey = h2-h1-self.m1-self.m2
 
         rect1 = Rectangle(Point(50, h1+self.m1), Point(50+self.m1*2, h1-self.m1))
-        rect1.setFill("Blue")
+        rect1.setFill("blue")
         rect2 = Rectangle(Point(self.size-50, h2+self.m2), Point(self.size-50-self.m2*2, h2-self.m2))
-        rect2.setFill("Red")
+        rect2.setFill("red")
 
         left1 = 50
         right1 = -self.size+50+self.m1*2
@@ -118,6 +124,10 @@ class Collisions:
                 if -2*self.m1-2*self.m2 <= distancey <= 0:
                     self.v1x = (self.m1-self.m2)/(self.m1+self.m2)*u1x + (2*self.m2)/(self.m1+self.m2)*u2x
                     self.v2x = (self.m2-self.m1)/(self.m1+self.m2)*u2x + (2*self.m1)/(self.m1+self.m2)*u1x
+
+            if win.checkMouse():
+                win.close()
+
             sleep(0.01)
 
 

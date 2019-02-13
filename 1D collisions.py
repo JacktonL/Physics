@@ -41,8 +41,8 @@ def anim(rect1, rect2, dist, mass1, mass2):
     rect1.draw(win)
     rect2.draw(win)
 
-    v1 = 2
-    v2 = -2
+    v1 = randint(1, 4)
+    v2 = -randint(1, 4)
 
     u1 = v1
     u2 = v2
@@ -68,6 +68,8 @@ def anim(rect1, rect2, dist, mass1, mass2):
         if distance <= 0:
             v1 = (m1-m2)/(m1+m2)*u1 + (2*m2)/(m1+m2)*u2
             v2 = (2*m1)/(m1+m2)*u1 + (m2-m1)/(m1+m2)*u2
+            print(v1)
+            print(v2)
 
         if left <= 0:
             v1 *= -1
@@ -75,7 +77,6 @@ def anim(rect1, rect2, dist, mass1, mass2):
         if right >= size:
             v2 *= -1
 
-        print(v1)
 
 hold = rect()
 
