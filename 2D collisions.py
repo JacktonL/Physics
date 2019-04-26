@@ -117,8 +117,10 @@ class Collisions:
 
             if -2*self.m1-2*self.m2 <= distancey <= 0 and ycheck:
                 if -2*self.m1-2*self.m2 <= distancex <= 0:
-                    self.v1y = (self.m1-self.m2)/(self.m1+self.m2)*u1y + (2*self.m2)/(self.m1+self.m2)*u2y
-                    self.v2y = (self.m2-self.m1)/(self.m1+self.m2)*u2y + (2*self.m1)/(self.m1+self.m2)*u1y
+                    self.v1y = (self.m1**2-self.m2**2)/(self.m1**2+self.m2**2)*u1y + \
+                               (2*self.m2**2)/(self.m1**2+self.m2**2)*u2y
+                    self.v2y = (self.m2**2-self.m1**2)/(self.m1**2+self.m2**2)*u2y + \
+                               (2*self.m1**2)/(self.m1**2+self.m2**2)*u1y
 
             if -2*self.m1-2*self.m2 <= distancex <= 0 and xcheck:
                 if -2*self.m1-2*self.m2 <= distancey <= 0:
