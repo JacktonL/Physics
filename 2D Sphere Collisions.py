@@ -1,7 +1,9 @@
 from graphics import GraphWin, Circle, Point
 from time import sleep
 from random import randint
-
+from math import sin, cos, tan, atan, pi, sqrt
+from math import radians as rad
+import numpy as np
 
 class Circles(Circle):
 
@@ -62,19 +64,30 @@ def move(cir):
         u2x = i.vx
         u2y = i.vy
 
-        if not i == cir:
-            if abs(i.py-cir.py) <= cir.m*1.2:
-                if abs(i.px-cir.px) <= cir.m*1.2:
+        u1 = np.array([u1y, u1x])
+        u2 = np.array([u2y, u2x])
 
-                    cir.vx = (cir.m-i.m)/(cir.m+i.m)*u1x + (2*i.m)/(cir.m+i.m)*u2x
-                    cir.vy = (cir.m-i.m)/(cir.m+i.m)*u1y + (2*i.m)/(cir.m+i.m)*u2y
-                    i.vx = (i.m-cir.m)/(cir.m+i.m)*u2x + (2*cir.m)/(cir.m+i.m)*u1x
-                    i.vy = (i.m-cir.m)/(cir.m+i.m)*u2y + (2*cir.m)/(cir.m+i.m)*u1y
+        yd = i.py-cir.py
+        xd = i.px-cir.px
+
+        x1 = np.array([cir.py, cir.px])
+        x2 = np.array([i.py, i.px])
+
+        dist = sqrt(yd**2+xd**2)
+        if not i == cir:
+            if dist <= 2*cir.m:
+                y1 = u1 - np.dot(u1-u2, x1-x2)/np.linalg.norm(x1-x2, ord=2)**2*(x1-x2)
+                y2 = u2 - np.dot(u2 - u1, x2 - x1) / np.linalg.norm(x2 - x1, ord=2) ** 2 * (x2 - x1)
+                cir.vy = y1[0]
+                cir.vx = y1[1]
+                i.vy = y2[0]
+                i.vx = y2[1]
+
 
 
 while True:
     vx = randint(-3, 3)
-    vy = randint(-3, 5)
+    vy = randint(-3, 3)
 
     for i in cirObjs:
         move(i)
