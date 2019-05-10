@@ -1,9 +1,9 @@
 from graphics import GraphWin, Circle, Point
 from time import sleep
 from random import randint
-from math import sin, cos, tan, atan, pi, sqrt
-from math import radians as rad
+from math import sqrt
 import numpy as np
+
 
 class Circles(Circle):
 
@@ -82,7 +82,6 @@ def move(cir):
                 cir.vx = y1[1]
                 i.vy = y2[0]
                 i.vx = y2[1]
-
 
 
 while True:
